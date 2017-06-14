@@ -1,3 +1,4 @@
+import { ChatContainerModule } from './chat-container/chat-container.module';
 // CORE DEPS
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +27,8 @@ import { UpdateComponent } from './update';
     HttpModule,
     RouterModule,
     ReactiveFormsModule,
-    APP_ROUTES
+    APP_ROUTES,
+    ChatContainerModule
   ],
   declarations: [
     PeopleAppComponent,
