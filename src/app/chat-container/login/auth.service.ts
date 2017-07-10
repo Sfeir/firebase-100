@@ -32,7 +32,7 @@ export class AuthService {
       }
       else {
         result = await this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-        user = new User(result.user.displaName, result.user.email, result.user.photoURL);
+        user = new User(result.user.displayName, result.user.email, result.user.photoURL);
       }
 
       localStorage.setItem('user', JSON.stringify(user));
