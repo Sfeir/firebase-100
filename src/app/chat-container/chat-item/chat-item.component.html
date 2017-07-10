@@ -6,7 +6,7 @@
             <img *ngIf="!!model.image" [src]="model.image">
         </p>
         <br/>
-        <span class="date" [title]="model.user.email">{{ model.user.displayName }}</span> • <span class="date" title="{{model.date | date:'yyyy-mm-ddTHH:mm:ss.sssZ'}}">{{ model.date | date:'dd/MM/yyyy @ HH:m:s' }}</span>
+        <span class="date" [title]="model.user.email" *ngIf=" display === 'row' ">{{ model.user.displayName }} • </span><span class="date" title="{{model.date | date:'yyyy-mm-ddTHH:mm:ss.sssZ'}}">{{ model.date | date:'MMM d, hh:mm a' }}</span>
     </div>
 </section>
 <span #scrollerRef></span>
