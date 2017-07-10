@@ -1,0 +1,12 @@
+<section #section [ngClass]="{'me': display !== 'row'}">
+    <img [src]="model.user.photoURL" [title]="model.user.displayName">
+    <div>
+        <p class="message">
+            {{ model.message }}
+            <img *ngIf="!!model.image" [src]="model.image">
+        </p>
+        <br/>
+        <span class="date" [title]="model.user.email">{{ model.user.displayName }}</span> • <span class="date" title="{{model.date | date:'yyyy-mm-ddTHH:mm:ss.sssZ'}}">{{ model.date | date:'dd/MM/yyyy @ HH:m:s' }}</span>
+    </div>
+</section>
+<span #scrollerRef></span>

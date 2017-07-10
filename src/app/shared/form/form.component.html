@@ -88,7 +88,7 @@
 
     <md-card-actions align="end">
         <button md-button type="button" (click)="cancel()">Cancel</button>
-        <button md-button color="primary" type="submit" (click)="submit()" [disabled]="!form.valid">Save</button>
+        <button md-button color="primary" type="submit" (click)="submit(form.value)" [disabled]="!form.valid">Save</button>
     </md-card-actions>
 
 </md-card>

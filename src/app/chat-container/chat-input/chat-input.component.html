@@ -1,0 +1,15 @@
+<button md-icon-button (click)="file.click()" *ngIf="!blobUrl; else img">
+	<md-icon>launch</md-icon>
+</button>
+<ng-template #img>
+    <img *ngIf="blobUrl" [src]="blobUrl">
+</ng-template>
+
+<input type="file" #file name="file" hidden accept="image/*" (change)="onFileSelected($event)" />
+
+<md-input-container>
+    <input mdInput placeholder="please enter your text here..." #text type="text" (keyup.enter)="send(text.value)">
+</md-input-container>
+<button (click)="send(text.value)" md-icon-button [disabled]="text.value === ''">
+	<md-icon>send</md-icon>
+</button>

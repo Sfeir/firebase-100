@@ -7,9 +7,9 @@ import { PeopleService } from "../shared";
     styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
-    private person: any = {};
+    public person: any = {};
 
-    constructor(private _peopleService: PeopleService) {}
+    constructor(public _peopleService: PeopleService) {}
 
     /**
      * OnInit implementation

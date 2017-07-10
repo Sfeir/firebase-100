@@ -1,0 +1,35 @@
+md-card {
+    max-width: 360px;
+    margin: auto;
+}
+
+div[md-card-avatar] {
+    overflow: hidden;
+    img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+section {
+    display: flex;
+    flex-direction: column
+}
+
+md-card-actions {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid lightgrey;
+}
+
+.login-btn[md-button] {
+    margin: 4px;
+    &.google {
+        color: #F2553B;
+        border: 1px solid;
+    }
+    &.email {
+        color: orange;
+        border: 1px solid;
+    }
+}

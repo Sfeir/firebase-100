@@ -1,4 +1,3 @@
-import { ChatContainerModule } from './chat-container/chat-container.module';
 // CORE DEPS
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,11 +18,14 @@ import { PeopleComponent } from './people';
 import { CardComponent, FormComponent, PeopleService, NaPipe, SfeirBadgeDirective } from "./shared";
 import { UpdateComponent } from './update';
 
+import { AuthService } from './chat-container/login/auth.service';
+import { ChatContainerModule } from './chat-container/chat-container.module';
+
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     HttpModule,
     RouterModule,
     ReactiveFormsModule,
@@ -42,7 +44,8 @@ import { UpdateComponent } from './update';
     SfeirBadgeDirective
   ],
   providers: [
-    PeopleService
+    PeopleService,
+    AuthService
   ],
   bootstrap: [
     PeopleAppComponent

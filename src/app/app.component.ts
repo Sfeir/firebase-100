@@ -1,3 +1,4 @@
+import { AuthService } from './chat-container/login/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,9 +7,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class PeopleAppComponent {    
-    name:string;
     
-    constructor() {
-        this.name = 'Angular 2';
+    constructor(public authService: AuthService) {
     }
 }
