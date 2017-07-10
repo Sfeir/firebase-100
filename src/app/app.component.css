@@ -1,3 +1,8 @@
+:host {
+    margin-top: 70px;
+    display: block;
+}
+
 md-toolbar.extend-toolbar {
     background-color: #FFCD00;
     background-repeat: no-repeat;
@@ -8,6 +13,7 @@ md-toolbar.extend-toolbar {
     z-index: 1;
     color: white;
     margin-bottom: 10px;
+    position: fixed;
 }
 
 md-toolbar .flex {
