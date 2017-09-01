@@ -18,7 +18,6 @@ import { PeopleComponent } from './people';
 import { CardComponent, FormComponent, PeopleService, NaPipe, SfeirBadgeDirective } from "./shared";
 import { UpdateComponent } from './update';
 
-import { AuthService } from './chat-container/login/auth.service';
 import { ChatContainerModule } from './chat-container/chat-container.module';
 
 @NgModule({
@@ -44,8 +43,7 @@ import { ChatContainerModule } from './chat-container/chat-container.module';
     SfeirBadgeDirective
   ],
   providers: [
-    PeopleService,
-    AuthService
+    PeopleService
   ],
   bootstrap: [
     PeopleAppComponent

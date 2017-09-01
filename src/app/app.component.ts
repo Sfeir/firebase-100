@@ -1,5 +1,6 @@
-import { AuthService } from './chat-container/login/auth.service';
-import { Component } from '@angular/core';
+import { DatabaseService } from './chat-container/_shared/database.service';
+import { AuthService } from './chat-container/_shared/auth.service';
+import { Component, HostListener } from "@angular/core";
 
 @Component({
     selector: 'sfeir-app',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 })
 export class PeopleAppComponent {    
     
-    constructor(public authService: AuthService) {
+    constructor(
+        public authService: AuthService,
+        public databaseservice: DatabaseService) {
     }
 }

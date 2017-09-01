@@ -4,31 +4,54 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
-exports.sendMessageNotification = functions.database.ref('/thread/{threadUID}').onWrite(event => {
-    if (!event.data.exists()) {
-        console.log('Exit when the data is deleted.');
-        return;
-    }
-    const data = event.data.val();
-    const payload = {
-        notification: {
-            title: `New message from ${data.user.displayName}`,
-            body: data.message
-        }
-    };
+const emoji = require('node-emoji')
 
-    admin.database().ref('/notifications/tokens').once('value', snap => {
-        const tokens = [];
-        snap.forEach(child => {
-            tokens.push(child.val());
-            return false;
-        });
+exports.emojify = functions.database.ref('/thread/{userUID}/{messageUID}')
+    .onWrite(event => {
 
-        console.log('Found tokens: ', tokens);
+        const messageNode = event.data.val();
+        console.log('messageNode', messageNode);
 
-        admin.messaging().sendToDevice(tokens, payload)
-            .then(response => console.log('successfully sent message:', response))
-            .catch(error => console.error('Error sending message:', error));
+        messageNode.message = emoji.emojify(messageNode.message);
+
+        const emojified = {};
+        const userUID = event.params.userUID;
+        const messageUID = event.params.messageUID;
+        emojified[`/thread/${userUID}/${messageUID}`] = messageNode;
+
+        console.log('emojify', `/thread/${userUID}/${messageUID}`, emojified);
+        return admin.database().ref().update(emojified);
     });
 
-});
+//...
+
+exports.sendMessageNotification = functions.database.ref('/thread/{userUUID}/{messageUUID}')
+    .onWrite(event => {
+        if (!event.data.exists()) {
+            console.log('Exit when the data is deleted.');
+            return;
+        }
+        const data = event.data.val();
+        const token = 'fpHnYekEbDE:APA91bF7qkwX-E3D...';
+        const payload = {
+            notification: {
+                title: 'Wassim Chegham replied',
+                body: 'Holla!'
+            }
+        };
+
+        return admin.database().ref('/notifications/tokens').once('value', snap => {
+            const tokens = [];
+            snap.forEach(child => {
+                tokens.push(child.val());
+                return false;
+            });
+
+            console.log('Found tokens: ', tokens);
+
+            admin.messaging().sendToDevice(tokens, payload)
+                .then(response => console.log('successfully sent message:', response))
+                .catch(error => console.error('Error sending message:', error));
+        });
+
+    });

@@ -1,3 +1,4 @@
+import { Message } from './../_shared/message.class';
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from "@angular/core";
 })
 export class ChatListComponent implements OnInit {
   
-  @Input() messageList;
+  @Input() messageList: Message[] = [];
 
   @Input() user: any;
 
@@ -22,5 +23,9 @@ export class ChatListComponent implements OnInit {
     else {
       return 'row';
     }
+  }
+
+  trackByFn(index, obj: Message) {
+    return obj.date;
   }
 }

@@ -1,3 +1,6 @@
 <section>
-    <sfeir-chat-item [display]="displayMode(item)" [model]="item" *ngFor="let item of messageList | async"></sfeir-chat-item>
+
+    <h1 *ngIf="messageList && messageList.length === 0">Your chat history is empty.</h1>
+
+    <sfeir-chat-item [display]="displayMode(item)" [model]="item" *ngFor="let item of messageList; trackBy: trackByFn"></sfeir-chat-item>
 </section>

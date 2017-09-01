@@ -1,22 +1,19 @@
-import { User } from './user.class';
 import { Router } from '@angular/router';
 import { Injectable, NgZone } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { AngularFireAuth } from "angularfire2/auth";
+import { User } from './user.class';
+import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class AuthService {
 
-  constructor(
-    public afAuth: AngularFireAuth, 
-    public router: Router) {
-    }
+  constructor(public router: Router) {}
 
-  getAuth() {
-    return this.afAuth.authState;
+  getAuth(callback) {
+    firebase.auth().onAuthStateChanged( callback )
   }
 
-  getUser() {
+  getLoggedUser() {
     return JSON.parse(localStorage.getItem('user') || '{}') as User;
   }
 
@@ -26,12 +23,12 @@ export class AuthService {
     try {
 
       if (provider === 'email') {
-        const response = await this.afAuth.auth.signInWithEmailAndPassword(userCred.email, userCred.password);
+        const response = await firebase.auth().signInWithEmailAndPassword(userCred.email, userCred.password);
         // when logging in via email, use the email adress as a "displayName"
         user = new User(response.email, response.email, 'assets/images/avatar_circle_blue_512dp.png');
       }
       else {
-        result = await this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        result = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
         user = new User(result.user.displayName, result.user.email, result.user.photoURL);
       }
 
@@ -46,7 +43,7 @@ export class AuthService {
   }
 
   async logout() {
-    await this.afAuth.auth.signOut();
+    await firebase.auth().signOut();
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }

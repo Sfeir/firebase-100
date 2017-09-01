@@ -14,7 +14,11 @@
       <md-icon>more_vert</md-icon>
     </button>
     <md-menu #menu="mdMenu" >
-      <button md-menu-item (click)="authService.logout()">
+      <button md-menu-item (click)="databaseservice.clear()">
+        <md-icon>delete_sweep</md-icon>
+        <span>Clear</span>
+    </button>
+    <button md-menu-item (click)="authService.logout()">
         <md-icon>account_circle</md-icon>
         <span>Logout</span>
     </button>

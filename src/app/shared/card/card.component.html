@@ -26,7 +26,7 @@
             Location&nbsp;:&nbsp;<a href="http://www.sfeir.com/contact/">SFEIR</a>
         </div>
         <div class="buttons-info">
-            <a md-button title="Chat with {{ person.firstname }}" [routerLink]="['/chat/', person.id]">
+            <a md-button title="Chat with {{ person.firstname }}" [routerLink]="['/chat/', person.id, {email:person.email }]">
                 <md-icon>comment</md-icon>
             </a>
             <a md-button title="Edit" [routerLink]="['/edit/', person.id]">

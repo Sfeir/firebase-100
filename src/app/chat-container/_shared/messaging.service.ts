@@ -1,9 +1,8 @@
-import { AngularFireDatabase } from "angularfire2/database";
 import { Injectable } from "@angular/core";
 import * as firebase from "firebase";
-import { environment } from "./../../environments/environment";
+import { environment } from "./../../../environments/environment";
 
-firebase.initializeApp(environment.firebase, environment.firebase.projectId);
+// firebase.initializeApp(environment.firebase, environment.firebase.projectId);
 
 @Injectable()
 export class MessagingService {
@@ -11,12 +10,14 @@ export class MessagingService {
 
   constructor() {
     this.messaging = firebase.messaging();
+    this.register();
   }
 
   async register() {
-    await this.registerSW();
 
     try {
+      await this.registerSW();
+      //...
       await this.messaging.requestPermission();
       console.log("Notification permission granted.");
 
@@ -40,14 +41,15 @@ export class MessagingService {
       );
       this.messaging.useServiceWorker(registration);
     } catch (e) {
-      console.error("ServiceWork is not supported by this browser.");
+      console.error("ServiceWorker is not supported by this browser.");
+      console.log(e);
       return false;
     }
   }
 
   registerListeners() {
     this.messaging.onTokenRefresh(async arg => {
-      // handle token rotation
+      /* handle token rotation */ 
     });
 
     this.messaging.onMessage(payload => {

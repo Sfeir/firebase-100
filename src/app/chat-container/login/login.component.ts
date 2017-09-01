@@ -1,4 +1,4 @@
-import { AuthService } from './auth.service';
+import { AuthService } from '../_shared/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Component, OnInit, NgZone } from '@angular/core';
@@ -23,9 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getAuth()
-      .subscribe( user => {
-        this.user = user;
-      });
+    this.authService.getAuth(user => this.user = user);
   }
 }

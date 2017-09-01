@@ -1,6 +1,22 @@
 {
     "rules": {
-        ".read": "true",
-        ".write": "true"
+        "notifications": {
+            "$uid": {
+                ".read": "true",
+                ".write": "true"
+            }
+        },
+        "public": {
+            ".read": "true",
+            ".write": "true",
+            ".indexOn": "date"
+        },
+        "thread": {
+            "$uid": {
+                ".indexOn": ["date"],
+                ".read": "true",
+                ".write": "true"
+            }
+        }
     }
 }

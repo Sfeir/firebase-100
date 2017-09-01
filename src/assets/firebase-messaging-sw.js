@@ -6,6 +6,7 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
+
 messaging.setBackgroundMessageHandler((payload) => {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
 

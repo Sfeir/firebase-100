@@ -51,6 +51,7 @@ export class ChatInputComponent implements OnInit {
       file,
       metadata
     });
+
   }
 
 }

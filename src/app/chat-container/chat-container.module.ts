@@ -1,4 +1,4 @@
-import { MessagingService } from './messaging.service';
+import { AuthService } from './_shared/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -23,7 +23,9 @@ import { ChatItemComponent } from './chat-item/chat-item.component';
 import { ChatInputComponent } from './chat-input/chat-input.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuardService } from './login/login-guard.service';
-import { StorageService } from './chat/storage.service';
+import { StorageService } from './_shared/storage.service';
+import { DatabaseService } from './_shared/database.service';
+import { MessagingService } from './_shared/messaging.service';
 import { ROUTES } from './chat-container.routes';
 
 @NgModule({
@@ -53,7 +55,9 @@ import { ROUTES } from './chat-container.routes';
   providers: [
     LoginGuardService,
     StorageService,
-    MessagingService
+    MessagingService,
+    DatabaseService,
+    AuthService
   ]
 })
 export class ChatContainerModule { }
