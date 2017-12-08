@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from "rxjs";
-import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database";
+import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable()
 export class FirebasePeopleService {
@@ -18,8 +18,8 @@ export class FirebasePeopleService {
     }
 
     fetchRandom() {
-        this.db.list('/').subscribe((data: any[]) => {
-            this.random$.next(data[(Math.random() * data.length) | 0]);
+        this.db.list<any>('/').valueChanges().subscribe((data: any[]) => {
+            this.random$.next(data[ Math.floor(Math.random() * data.length)]);
         });
         return this.random$;
     }
