@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Injectable, NgZone } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { User } from './user.class';
+import { User } from './models/user.class';
 import { environment } from './../../../environments/environment';
 
 @Injectable()

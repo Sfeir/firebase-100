@@ -1,8 +1,8 @@
 import { Subject } from 'rxjs/Subject';
 import { Injectable, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
-import { Message } from './message.class';
-import { User } from 'app/chat-container/_shared/user.class';
+import { Message } from './models/message.class';
+import { User } from './models/user.class';
 
 @Injectable()
 export class DatabaseService {

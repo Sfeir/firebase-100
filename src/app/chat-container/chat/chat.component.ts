@@ -4,10 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { AuthService } from '../_shared/auth.service';
 import { MessagingService } from '../_shared/messaging.service';
-import { User } from './../_shared/user.class';
+import { User } from './../_shared/models/user.class';
+import { Message } from './../_shared/models/message.class';
 import { StorageService } from '../_shared/storage.service';
 import { DatabaseService } from './../_shared/database.service';
-import { Message } from './../_shared/message.class';
 @Component({
   selector: 'sfeir-chat',
   templateUrl: './chat.component.html',

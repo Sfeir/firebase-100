@@ -1,4 +1,4 @@
-import { User } from '../_shared/user.class';
+import { User } from './user.class';
 
 export class Message {
   constructor(
