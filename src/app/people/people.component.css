@@ -29,7 +29,7 @@ section {
     visibility: visible;
 }
 
-md-list-item {
+mat-list-item {
     border: 1px solid rgba(0, 0, 0, 0.1);
     color: rgba(0, 0, 0, 0.87);
     background-color: white;
@@ -44,7 +44,7 @@ md-list-item {
     cursor: pointer;
 }
 
-md-list-item:hover {
+mat-list-item:hover {
     box-shadow: 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
 }
 
@@ -65,10 +65,10 @@ md-list-item:hover {
     bottom: 90px;
 }
 
-button[md-fab] {
+button[mat-fab] {
     background-color: #F87C00;
 }
 
-button[md-fab]:last-child {
+button[mat-fab]:last-child {
     background-color: #FFA700;
 }
