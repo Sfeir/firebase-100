@@ -1,14 +1,7 @@
-import { AuthService } from './_shared/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {
-  MdButtonModule,
-  MdInputModule,
-  MdCardModule,
-  MdIconModule
-} from "@angular/material";
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 // FIREBASE MODULES
 import { AngularFireModule } from 'angularfire2';
@@ -28,28 +21,28 @@ import { DatabaseService } from './_shared/database.service';
 import { MessagingService } from './_shared/messaging.service';
 import { ROUTES } from './chat-container.routes';
 
+import { MatModule } from './../shared/material.module';
+import { AuthService } from './_shared/auth.service';
+
 @NgModule({
   imports: [
     CommonModule,
+    MatModule,
     FormsModule,
-    MdButtonModule,
-    MdInputModule,
-    MdCardModule,
-    MdIconModule,
-    RouterModule.forRoot(ROUTES,{useHash: true}),
+    RouterModule.forRoot(ROUTES, { useHash: true }),
 
     // imports firebase/app needed for everything
-    AngularFireModule.initializeApp(environment.firebase, 'sfeir-firebase'), 
+    AngularFireModule.initializeApp(environment.firebase, 'sfeir-firebase'),
     // imports firebase/database, only needed for database features
-    AngularFireDatabaseModule, 
+    AngularFireDatabaseModule,
     // imports firebase/auth, only needed for auth features
     AngularFireAuthModule
   ],
   declarations: [
-    ChatComponent, 
-    ChatListComponent, 
-    ChatItemComponent, 
-    ChatInputComponent, 
+    ChatComponent,
+    ChatListComponent,
+    ChatItemComponent,
+    ChatInputComponent,
     LoginComponent
   ],
   providers: [
@@ -60,4 +53,4 @@ import { ROUTES } from './chat-container.routes';
     AuthService
   ]
 })
-export class ChatContainerModule { }
+export class ChatContainerModule {}
