@@ -1,6 +1,6 @@
 import { environment } from './../../../environments/environment';
-import { Injectable } from "@angular/core";
-import * as firebase from "firebase";
+import { Injectable } from '@angular/core';
+import * as firebase from 'firebase';
 
 firebase.initializeApp(environment.firebase);
 
@@ -12,7 +12,7 @@ export class StorageService {
     this.storageRef = firebase.storage().ref();
   }
 
-  async store({file, metadata}) {
+  async store({ file, metadata }) {
     try {
       const snapshot = await this.storageRef
         .child(`thread/${file.name}`)
@@ -20,7 +20,7 @@ export class StorageService {
 
       return snapshot.downloadURL;
     } catch (error) {
-      console.error("Upload failed:", error);
+      console.error('Upload failed:', error);
     }
   }
 }

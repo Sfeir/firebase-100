@@ -6,11 +6,10 @@ import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class AuthService {
-
   constructor(public router: Router) {}
 
   getAuth(callback) {
-    firebase.auth().onAuthStateChanged( callback )
+    firebase.auth().onAuthStateChanged(callback);
   }
 
   getLoggedUser() {
@@ -21,21 +20,30 @@ export class AuthService {
     let user = {} as User;
     let result = {} as any;
     try {
-
       if (provider === 'email') {
-        const response = await firebase.auth().signInWithEmailAndPassword(userCred.email, userCred.password);
+        const response = await firebase
+          .auth()
+          .signInWithEmailAndPassword(userCred.email, userCred.password);
         // when logging in via email, use the email adress as a "displayName"
-        user = new User(response.email, response.email, 'assets/images/avatar_circle_blue_512dp.png');
-      }
-      else {
-        result = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
-        user = new User(result.user.displayName, result.user.email, result.user.photoURL);
+        user = new User(
+          response.email,
+          response.email,
+          'assets/images/avatar_circle_blue_512dp.png'
+        );
+      } else {
+        result = await firebase
+          .auth()
+          .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        user = new User(
+          result.user.displayName,
+          result.user.email,
+          result.user.photoURL
+        );
       }
 
       localStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['/chat']);
-    }
-    catch(e) {
+    } catch (e) {
       console.error('can not log in');
       console.error(e);
     }
@@ -51,5 +59,4 @@ export class AuthService {
   isLoggedIn() {
     return localStorage.getItem('user') !== null;
   }
-
 }

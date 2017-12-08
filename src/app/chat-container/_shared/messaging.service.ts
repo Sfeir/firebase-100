@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import * as firebase from "firebase";
-import { environment } from "./../../../environments/environment";
+import { Injectable } from '@angular/core';
+import * as firebase from 'firebase';
+import { environment } from './../../../environments/environment';
 
 // firebase.initializeApp(environment.firebase, environment.firebase.projectId);
 
@@ -14,22 +14,21 @@ export class MessagingService {
   }
 
   async register() {
-
     try {
       await this.registerSW();
-      //...
+      // ...
       await this.messaging.requestPermission();
-      console.log("Notification permission granted.");
+      console.log('Notification permission granted.');
 
       const currentToken = await this.messaging.getToken();
       if (this.storeToken(currentToken)) {
         await this.sendTokenToServer(currentToken);
-        console.log("Token stored and sent to server.");
+        console.log('Token stored and sent to server.');
       }
 
       this.registerListeners();
     } catch (err) {
-      console.log("Unable to get permission to notify.", err);
+      console.log('Unable to get permission to notify.', err);
       return false;
     }
   }
@@ -37,11 +36,11 @@ export class MessagingService {
   async registerSW() {
     try {
       const registration = await navigator.serviceWorker.register(
-        "assets/firebase-messaging-sw.js"
+        'assets/firebase-messaging-sw.js'
       );
       this.messaging.useServiceWorker(registration);
     } catch (e) {
-      console.error("ServiceWorker is not supported by this browser.");
+      console.error('ServiceWorker is not supported by this browser.');
       console.log(e);
       return false;
     }
@@ -49,11 +48,11 @@ export class MessagingService {
 
   registerListeners() {
     this.messaging.onTokenRefresh(async arg => {
-      /* handle token rotation */ 
+      /* handle token rotation */
     });
 
     this.messaging.onMessage(payload => {
-      console.log("Message received. ", payload);
+      console.log('Message received. ', payload);
     });
   }
 
@@ -67,6 +66,11 @@ export class MessagingService {
   }
 
   async sendTokenToServer(currentToken) {
-    return Promise.resolve(firebase.database().ref('/notifications/tokens').push(currentToken));
+    return Promise.resolve(
+      firebase
+        .database()
+        .ref('/notifications/tokens')
+        .push(currentToken)
+    );
   }
 }

@@ -1,13 +1,12 @@
 import { Message } from './../_shared/message.class';
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: "sfeir-chat-list",
-  templateUrl: "./chat-list.component.html",
-  styleUrls: ["./chat-list.component.scss"]
+  selector: 'sfeir-chat-list',
+  templateUrl: './chat-list.component.html',
+  styleUrls: ['./chat-list.component.scss']
 })
 export class ChatListComponent implements OnInit {
-  
   @Input() messageList: Message[] = [];
 
   @Input() user: any;
@@ -19,8 +18,7 @@ export class ChatListComponent implements OnInit {
   displayMode(item) {
     if (this.user && this.user.email === item.user.email) {
       return 'row-reverse';
-    }
-    else {
+    } else {
       return 'row';
     }
   }

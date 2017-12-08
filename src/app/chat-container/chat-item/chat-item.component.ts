@@ -7,18 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./chat-item.component.scss']
 })
 export class ChatItemComponent implements OnInit {
-
   @Input() model: any = {};
 
   @Input() display: any = 'row';
 
   @ViewChild('scrollerRef') scrollerRef: ElementRef;
-  
-  constructor() {
-  }
+
+  constructor() {}
 
   ngOnInit() {
     this.scrollerRef.nativeElement.scrollIntoView(true);
   }
-
 }

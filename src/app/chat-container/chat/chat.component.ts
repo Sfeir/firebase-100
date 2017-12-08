@@ -1,13 +1,7 @@
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import { ActivatedRoute } from '@angular/router';
-import {
-  Component,
-  OnInit,
-  ViewChild
-} from "@angular/core";
-import { AngularFireDatabase } from 'angularfire2/database';
-import { FirebaseListObservable } from 'angularfire2/database';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { AuthService } from '../_shared/auth.service';
 import { MessagingService } from '../_shared/messaging.service';
 import { User } from './../_shared/user.class';
@@ -20,36 +14,39 @@ import { Message } from './../_shared/message.class';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-
   @ViewChild('section') sectionRef;
 
   thread: Observable<Message[]>;
   user: User;
-  fileInfo: {file; metadata};
-  
+  fileInfo: { file; metadata };
+
   constructor(
     public databaseService: DatabaseService,
     public authService: AuthService,
     public storage: StorageService,
     public messaging: MessagingService,
-    public route: ActivatedRoute) {
-  }
+    public route: ActivatedRoute,
+    public zone: NgZone
+  ) {}
 
   ngOnInit() {
-
     this.user = this.authService.getLoggedUser();
     if (!this.user) {
       throw Error('User is not logged in.');
     }
 
     this.thread = this.route.params
-        .map(params => params.id)
-        .do(val => {
-          console.log('id', val);
-          return val;
+      .map(params => params.id)
+      .do(val => {
+        console.log('id', val);
+        return val;
+      })
+      .flatMap(uuid => this.databaseService.get({ uuid }))
+      .do(val =>
+        this.zone.run(() => {
+          return console.log('fb', val);
         })
-        .flatMap(uuid => this.databaseService.get({uuid}))
-        .do(val => console.log('fb', val));
+      );
   }
 
   async sendMessage(message) {
@@ -59,7 +56,7 @@ export class ChatComponent implements OnInit {
     }
     this.databaseService.save({
       user: this.user,
-      message, 
+      message,
       fileUrl
     });
   }
@@ -67,5 +64,4 @@ export class ChatComponent implements OnInit {
   async onFileSelected(fileInfo) {
     this.fileInfo = fileInfo;
   }
-
 }

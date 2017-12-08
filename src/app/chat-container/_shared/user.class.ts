@@ -1,9 +1,7 @@
-
 export class User {
-	constructor(
-		public displayName: string,
-		public email: string,
-		public photoURL: string
-	){
-	}
+  constructor(
+    public displayName: string,
+    public email: string,
+    public photoURL: string
+  ) {}
 }
