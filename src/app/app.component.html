@@ -8,7 +8,7 @@
     <span class="flex"></span>
 
     <span>
-    <a [routerLink]="['/chat']">Chat</a>
+    <a [routerLink]="['/chat']">Chat<mat-chip *ngIf="(notifications$ | async) as notifications" >{{notifications}}</mat-chip></a>
     <a [routerLink]="['/people']">List</a>
     <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="authService.isLoggedIn()" >
       <mat-icon>more_vert</mat-icon>

@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { environment } from './../../../environments/environment';
@@ -7,9 +8,14 @@ import { environment } from './../../../environments/environment';
 @Injectable()
 export class MessagingService {
   messaging: firebase.messaging.Messaging;
+  notifications$: Subject<number>;
+
+  private messages: any[];
 
   constructor() {
     this.messaging = firebase.messaging();
+    this.notifications$ = new Subject();
+    this.messages = [];
     this.register();
   }
 
@@ -49,10 +55,13 @@ export class MessagingService {
   registerListeners() {
     this.messaging.onTokenRefresh(async arg => {
       /* handle token rotation */
+      /* find the old token and replace it with the new one */
     });
 
     this.messaging.onMessage(payload => {
       console.log('Message received. ', payload);
+      this.messages.push(payload);
+      this.notifications$.next(this.messages.length);
     });
   }
 

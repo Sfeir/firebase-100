@@ -50,3 +50,14 @@ mat-toolbar-row:nth-child(2) {
     height: 56px;
     margin-top: 56px;
 }
+
+.mat-chip:not(.mat-basic-chip) {
+  background: #F1453D;
+  color: white;
+  border-radius: 12px;
+  top: -8px;
+  position: relative;
+  text-align: center;
+  padding: 3px 7px 3px;
+  margin: 3px;
+}
