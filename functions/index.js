@@ -33,13 +33,11 @@ exports.sendMessageNotification = functions.database
       console.log('Exit when the data is deleted.');
       return;
     }
-    const messageNode = event.data.val();
+
+    // @todo: get the current message node from db
 
     const payload = {
-      notification: {
-        title: `${messageNode.user.displayName} replied`,
-        body: `${messageNode.message}`
-      }
+      // @todo
     };
 
     return admin

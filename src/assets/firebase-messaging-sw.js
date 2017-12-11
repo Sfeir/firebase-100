@@ -12,8 +12,7 @@ messaging.setBackgroundMessageHandler((payload) => {
 
     const notificationTitle = 'SFEIR Firebase';
     const notificationOptions = {
-        body: payload.data.message,
-        icon: payload.data.user.photoURL
+        // @todo
     };
 
     return self.registration.showNotification(notificationTitle, notificationOptions);
