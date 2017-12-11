@@ -1,12 +1,12 @@
 <mat-card>
-    <mat-card-header *ngIf="user">
+    <mat-card-header *ngIf="user.email">
         <div mat-card-avatar>
             <img *ngIf="user.photoURL" [src]="user.photoURL">
         </div>
         <mat-card-title>{{user.displayName}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content *ngIf="!user">
+    <mat-card-content *ngIf="!user.email">
         <p>Use your email/password to sign in</p>
         <section>
             <mat-form-field>
@@ -15,14 +15,14 @@
             <mat-form-field>
                 <input [(ngModel)]="userCred.password" type="password" matInput placeholder="User password">
             </mat-form-field>
-            <button class="login-btn email" mat-button (click)="authService.login('email', userCred)">Sign In</button>
+            <button class="login-btn email" mat-button>Sign In</button>
         </section>
     </mat-card-content>
     <mat-card-actions>
-        <button (click)="authService.logout()" mat-button *ngIf="user; else LoginTpl">Logout</button>
+        <button mat-button *ngIf="user.email; else LoginTpl">Logout</button>
     </mat-card-actions>
 </mat-card>
 
 <ng-template #LoginTpl>
-    <button class="login-btn google" mat-button (click)="authService.login('google')">Login with Google</button>
+    <button class="login-btn google" mat-button>Login with Google</button>
 </ng-template>

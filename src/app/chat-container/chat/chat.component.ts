@@ -2,7 +2,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
-import { AuthService } from '../_shared/auth.service';
 import { User } from './../_shared/models/user.class';
 import { Message } from './../_shared/models/message.class';
 
@@ -19,16 +18,11 @@ export class ChatComponent implements OnInit {
   fileInfo: { file; metadata };
 
   constructor(
-    public authService: AuthService,
     public route: ActivatedRoute,
     public zone: NgZone
   ) {}
 
   ngOnInit() {
-    this.user = this.authService.getLoggedUser();
-    if (!this.user) {
-      throw Error('User is not logged in.');
-    }
   }
 
 }

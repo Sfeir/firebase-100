@@ -17,11 +17,12 @@ export const environment = {
     }
   },
   firebase: {
-    apiKey: 'AIzaSyClJyRZYlrt0RteiYfB7yQYqddTmKJNm-s',
-    authDomain: 'sfeir-firebase.firebaseapp.com',
-    databaseURL: 'https://sfeir-firebase.firebaseio.com',
-    projectId: 'sfeir-firebase',
-    storageBucket: 'sfeir-firebase.appspot.com',
-    messagingSenderId: '295388413389'
+    // @todo
+    // apiKey: '',
+    // authDomain: '',
+    // databaseURL: '',
+    // projectId: '',
+    // storageBucket: '',
+    // messagingSenderId: ''
   }
 };

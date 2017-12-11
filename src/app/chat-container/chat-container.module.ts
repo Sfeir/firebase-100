@@ -14,8 +14,6 @@ import { LoginGuardService } from './login/login-guard.service';
 import { ROUTES } from './chat-container.routes';
 import { MatModule } from './../shared/material.module';
 
-import { AuthService } from './_shared/auth.service';
-
 import * as firebase from 'firebase';
 firebase.initializeApp(environment.firebase);
 
@@ -34,8 +32,7 @@ firebase.initializeApp(environment.firebase);
     LoginComponent
   ],
   providers: [
-    LoginGuardService,
-    AuthService
+    LoginGuardService
   ]
 })
 export class ChatContainerModule {}

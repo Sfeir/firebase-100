@@ -12,17 +12,13 @@
       <mat-chip *ngIf="false">0</mat-chip>
     </a>
     <a [routerLink]="['/people']">List</a>
-    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="authService.isLoggedIn()">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="reset()">
         <mat-icon>autorenew</mat-icon>
         <span>Reset Data</span>
-      </button>
-      <button mat-menu-item (click)="authService.logout()">
-        <mat-icon>account_circle</mat-icon>
-        <span>Logout</span>
       </button>
     </mat-menu>
   </span>

@@ -1,6 +1,5 @@
-import { AuthService } from '../_shared/auth.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, NgZone } from '@angular/core';
 
 @Component({
@@ -9,20 +8,13 @@ import { Component, OnInit, NgZone } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginError: any;
-  userCred: any;
-  user: any;
+  userCred;
+  user;
 
-  constructor(
-    public authService: AuthService,
-    public zone: NgZone,
-    public router: Router) {
-
-    this.user = {} as any;
-    this.userCred = {} as any;  
+  constructor() {
+    this.userCred = {};
+    this.user = {};
   }
 
-  ngOnInit() {
-    this.authService.getAuth(user => this.user = user);
-  }
+  ngOnInit() {}
 }
