@@ -1,11 +1,6 @@
-<button mat-icon-button (click)="file.click()" *ngIf="!blobUrl; else img">
-	<mat-icon>launch</mat-icon>
-</button>
 <ng-template #img>
     <img *ngIf="blobUrl" [src]="blobUrl">
 </ng-template>
-
-<input type="file" #file name="file" hidden accept="image/*" (change)="onFileSelected($event)" />
 
 <mat-form-field>
     <input matInput placeholder="please enter your text here..." #text type="text" (keyup.enter)="send(text.value)">

@@ -20,8 +20,7 @@ export class DatabaseService {
 
     this.dbRef = firebase.database().ref(path);
     this.dbRef
-      .orderByChild('date')
-      .limitToLast(20)
+      // @todo
       .on('value', snapshot => {
         const threads = [];
         snapshot.forEach(childSnapshot => {
@@ -32,9 +31,6 @@ export class DatabaseService {
           return false;
         });
         thread$.next(threads);
-
-        //   console.log('calling next', threads);
-        //   this.zone.run(() => thread$.next(threads));
       });
 
     return thread$;
@@ -42,10 +38,10 @@ export class DatabaseService {
 
   save({ user, message, fileUrl }) {
     const msg = new Message(user, message, new Date().getTime(), fileUrl);
-    this.dbRef.push(msg);
+    // @todo
   }
 
   clear() {
-    this.dbRef.remove();
+    // @todo
   }
 }

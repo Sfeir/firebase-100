@@ -14,7 +14,6 @@ import { LoginGuardService } from './login/login-guard.service';
 import { ROUTES } from './chat-container.routes';
 import { MatModule } from './../shared/material.module';
 
-import { StorageService } from './_shared/storage.service';
 import { DatabaseService } from './_shared/database.service';
 import { AuthService } from './_shared/auth.service';
 
@@ -37,7 +36,6 @@ firebase.initializeApp(environment.firebase);
   ],
   providers: [
     LoginGuardService,
-    StorageService,
     DatabaseService,
     AuthService
   ]

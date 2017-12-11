@@ -5,7 +5,6 @@ import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { AuthService } from '../_shared/auth.service';
 import { User } from './../_shared/models/user.class';
 import { Message } from './../_shared/models/message.class';
-import { StorageService } from '../_shared/storage.service';
 import { DatabaseService } from './../_shared/database.service';
 
 @Component({
@@ -23,7 +22,6 @@ export class ChatComponent implements OnInit {
   constructor(
     public databaseService: DatabaseService,
     public authService: AuthService,
-    public storage: StorageService,
     public route: ActivatedRoute,
     public zone: NgZone
   ) {}
@@ -40,10 +38,7 @@ export class ChatComponent implements OnInit {
   }
 
   async sendMessage(message) {
-    let fileUrl = '';
-    if (this.fileInfo) {
-      fileUrl = await this.storage.store(this.fileInfo);
-    }
+    const fileUrl = '';
     this.databaseService.save({
       user: this.user,
       message,
@@ -51,7 +46,4 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  async onFileSelected(fileInfo) {
-    this.fileInfo = fileInfo;
-  }
 }
