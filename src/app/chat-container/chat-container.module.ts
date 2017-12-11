@@ -3,11 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-// FIREBASE MODULES
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
 // App
 import { environment } from '../../environments/environment';
 import { ChatComponent } from './chat/chat.component';
@@ -29,14 +24,7 @@ import { AuthService } from './_shared/auth.service';
     CommonModule,
     MatModule,
     FormsModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
-
-    // imports firebase/app needed for everything
-    AngularFireModule.initializeApp(environment.firebase, 'sfeir-firebase'),
-    // imports firebase/database, only needed for database features
-    AngularFireDatabaseModule,
-    // imports firebase/auth, only needed for auth features
-    AngularFireAuthModule
+    RouterModule.forRoot(ROUTES, { useHash: true })
   ],
   declarations: [
     ChatComponent,
