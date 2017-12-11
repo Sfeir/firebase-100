@@ -20,45 +20,9 @@ exports.emojify = functions.database
     emojified[`/thread/${userUUID}/${messageUUID}`] = messageNode;
 
     console.log('emojify', `/thread/${userUUID}/${messageUUID}`, emojified);
-    return admin
-      .database()
-      .ref()
-      .update(emojified);
+
+    // @todo
+    // return admin.database()...
   });
-
-exports.sendMessageNotification = functions.database
-  .ref('/thread/{userUUID}/{messageUUID}')
-  .onWrite(event => {
-    if (!event.data.exists()) {
-      console.log('Exit when the data is deleted.');
-      return;
-    }
-
-    // @todo: get the current message node from db
-
-    const payload = {
-      // @todo
-    };
-
-    return admin
-      .database()
-      .ref('/notifications/tokens')
-      .once('value', snap => {
-        const tokens = [];
-        snap.forEach(child => {
-          tokens.push(child.val());
-          return false;
-        });
-
-        console.log('Found tokens: ', tokens);
-
-        admin
-          .messaging()
-          .sendToDevice(tokens, payload)
-          .then(response => console.log('successfully sent message:', response))
-          .catch(error => console.error('Error sending message:', error));
-      });
-  });
-
 
 module.exports.people = require('./server/server.js').people;
