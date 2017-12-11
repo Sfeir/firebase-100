@@ -1,6 +1,6 @@
 <section>
 
     <sfeir-chat-list [user]="authService.getLoggedUser()" [messageList]="thread | async"></sfeir-chat-list>
-    <sfeir-chat-input (file)="onFileSelected($event)" (message)="sendMessage($event)"></sfeir-chat-input>
+    <sfeir-chat-input></sfeir-chat-input>
 
 </section>

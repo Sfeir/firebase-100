@@ -18,12 +18,12 @@ export class AuthService {
 
   async login(provider, userCred?) {
     let user = {} as User;
-    let result = {} as any;
     try {
       if (provider === 'email') {
-        const response = await firebase
-          .auth()
-          .signInWithEmailAndPassword(userCred.email, userCred.password);
+
+        // @todo firebase.auth()...
+        const response = null;
+
         // when logging in via email, use the email adress as a "displayName"
         user = new User(
           response.email,
@@ -31,27 +31,28 @@ export class AuthService {
           'assets/images/avatar_circle_blue_512dp.png'
         );
       } else {
-        result = await firebase
-          .auth()
-          .signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
+        // @todo firebase.auth()...
+        const response = null;
+
         user = new User(
-          result.user.displayName,
-          result.user.email,
-          result.user.photoURL
+          response.user.displayName,
+          response.user.email,
+          response.user.photoURL
         );
       }
 
       localStorage.setItem('user', JSON.stringify(user));
       this.router.navigate(['/chat']);
     } catch (e) {
-      console.error('can not log in');
       console.error(e);
     }
     return user;
   }
 
   async logout() {
-    await firebase.auth().signOut();
+    // @todo
+
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
