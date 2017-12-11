@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { environment } from './../../../environments/environment';
 
-// firebase.initializeApp(environment.firebase, environment.firebase.projectId);
-
 @Injectable()
 export class MessagingService {
   messaging: firebase.messaging.Messaging;

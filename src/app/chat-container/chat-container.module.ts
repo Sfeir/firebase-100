@@ -19,6 +19,9 @@ import { DatabaseService } from './_shared/database.service';
 import { MessagingService } from './_shared/messaging.service';
 import { AuthService } from './_shared/auth.service';
 
+import * as firebase from 'firebase';
+firebase.initializeApp(environment.firebase);
+
 @NgModule({
   imports: [
     CommonModule,

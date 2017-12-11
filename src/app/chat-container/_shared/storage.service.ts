@@ -2,8 +2,6 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 
-firebase.initializeApp(environment.firebase);
-
 @Injectable()
 export class StorageService {
   storageRef;
