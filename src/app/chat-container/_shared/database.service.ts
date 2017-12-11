@@ -3,6 +3,7 @@ import { Injectable, NgZone } from '@angular/core';
 import * as firebase from 'firebase';
 import { Message } from './models/message.class';
 import { User } from './models/user.class';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class DatabaseService {
@@ -10,30 +11,30 @@ export class DatabaseService {
 
   constructor(public zone: NgZone) {}
 
-  get(opts?) {
+  get(opts?): Observable<Message[]> {
     const thread$ = new Subject<Message[]>();
     let path = '/public';
     if (opts.uuid) {
       path = `/thread/${opts.uuid}`;
     }
-    let threads = [];
 
     this.dbRef = firebase.database().ref(path);
     this.dbRef
       .orderByChild('date')
       .limitToLast(20)
       .on('value', snapshot => {
+        const threads = [];
         snapshot.forEach(childSnapshot => {
-          var childKey = childSnapshot.key;
-          var childData = childSnapshot.val();
-
+          const childKey = childSnapshot.key;
+          const childData = childSnapshot.val();
           threads.push(childData);
 
           return false;
         });
+        thread$.next(threads);
 
-        console.log('calling next', threads);
-        this.zone.run(() => thread$.next(threads));
+        //   console.log('calling next', threads);
+        //   this.zone.run(() => thread$.next(threads));
       });
 
     return thread$;
