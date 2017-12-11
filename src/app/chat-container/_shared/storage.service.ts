@@ -7,14 +7,15 @@ export class StorageService {
   storageRef;
 
   constructor() {
-    this.storageRef = firebase.storage().ref();
+    // @todo
+    this.storageRef = null;
   }
 
   async store({ file, metadata }) {
     try {
-      const snapshot = await this.storageRef
-        .child(`thread/${file.name}`)
-        .put(file, metadata);
+
+      // @todo
+      const snapshot = null;
 
       return snapshot.downloadURL;
     } catch (error) {

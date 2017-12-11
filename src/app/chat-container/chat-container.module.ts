@@ -16,7 +16,6 @@ import { MatModule } from './../shared/material.module';
 
 import { StorageService } from './_shared/storage.service';
 import { DatabaseService } from './_shared/database.service';
-import { MessagingService } from './_shared/messaging.service';
 import { AuthService } from './_shared/auth.service';
 
 import * as firebase from 'firebase';
@@ -39,7 +38,6 @@ firebase.initializeApp(environment.firebase);
   providers: [
     LoginGuardService,
     StorageService,
-    MessagingService,
     DatabaseService,
     AuthService
   ]

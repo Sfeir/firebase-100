@@ -3,7 +3,6 @@ import 'rxjs/add/operator/do';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { AuthService } from '../_shared/auth.service';
-import { MessagingService } from '../_shared/messaging.service';
 import { User } from './../_shared/models/user.class';
 import { Message } from './../_shared/models/message.class';
 import { StorageService } from '../_shared/storage.service';
@@ -25,7 +24,6 @@ export class ChatComponent implements OnInit {
     public databaseService: DatabaseService,
     public authService: AuthService,
     public storage: StorageService,
-    public messaging: MessagingService,
     public route: ActivatedRoute,
     public zone: NgZone
   ) {}
