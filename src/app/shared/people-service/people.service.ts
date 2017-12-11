@@ -26,6 +26,11 @@ export class PeopleService {
     );
   }
 
+  reset() {
+    return this._http
+      .get(this._backendURL.reset, this._options());
+  }
+
   fetch(): Observable<any[]> {
     return this._http
       .get(this._backendURL.allPeople, this._options())

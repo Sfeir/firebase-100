@@ -26,8 +26,6 @@ exports.emojify = functions.database
       .update(emojified);
   });
 
-// ...
-
 exports.sendMessageNotification = functions.database
   .ref('/thread/{userUUID}/{messageUUID}')
   .onWrite(event => {
@@ -63,3 +61,6 @@ exports.sendMessageNotification = functions.database
           .catch(error => console.error('Error sending message:', error));
       });
   });
+
+
+module.exports.people = require('./server/server.js').people;

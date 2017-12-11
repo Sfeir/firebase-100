@@ -1,6 +1,6 @@
 <mat-card class="mat-whiteframe-2dp">
     <mat-card-title-group>
-        <img mat-card-mat-image src="{{ person.photo }}">
+        <img mat-card-mat-image src="{{ person.photo }}" width="128px" height="128px">
         <mat-card-title>
             <a [routerLink]="['/person', person.id]">
                 <span>{{ person.firstname }} {{ person.lastname }}</span>
