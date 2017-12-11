@@ -1,9 +1,9 @@
-md-card {
+mat-card {
     max-width: 360px;
     margin: auto;
 }
 
-div[md-card-avatar] {
+div[mat-card-avatar] {
     overflow: hidden;
     img {
         height: 40px;
@@ -16,13 +16,13 @@ section {
     flex-direction: column
 }
 
-md-card-actions {
+mat-card-actions {
     display: flex;
     flex-direction: column;
     border-top: 1px solid lightgrey;
 }
 
-.login-btn[md-button] {
+.login-btn[mat-button] {
     margin: 4px;
     &.google {
         color: #F2553B;

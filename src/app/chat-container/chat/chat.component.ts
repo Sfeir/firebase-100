@@ -8,6 +8,7 @@ import { User } from './../_shared/models/user.class';
 import { Message } from './../_shared/models/message.class';
 import { StorageService } from '../_shared/storage.service';
 import { DatabaseService } from './../_shared/database.service';
+
 @Component({
   selector: 'sfeir-chat',
   templateUrl: './chat.component.html',
@@ -37,16 +38,7 @@ export class ChatComponent implements OnInit {
 
     this.thread = this.route.params
       .map(params => params.id)
-      .do(val => {
-        console.log('id', val);
-        return val;
-      })
-      .flatMap(uuid => this.databaseService.get({ uuid }))
-      .do(val =>
-        this.zone.run(() => {
-          return console.log('fb', val);
-        })
-      );
+      .flatMap(uuid => this.databaseService.get({ uuid }));
   }
 
   async sendMessage(message) {
