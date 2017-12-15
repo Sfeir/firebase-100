@@ -15,6 +15,7 @@ export class StorageService {
     try {
 
       // @todo
+      // @note: this.storageRef returns a Promise !
       const snapshot = null;
 
       return snapshot.downloadURL;
