@@ -9,6 +9,11 @@ const emoji = require('node-emoji');
 exports.emojify = functions.database
   .ref('/thread/{userUUID}/{messageUUID}')
   .onWrite(event => {
+    if (!event.data.exists()) {
+      console.log('Exit when the data is deleted.');
+      return;
+    }
+
     const messageNode = event.data.val();
     console.log('messageNode', messageNode);
 
