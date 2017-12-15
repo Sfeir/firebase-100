@@ -4,6 +4,11 @@ import * as firebase from 'firebase/app';
 import { User } from './models/user.class';
 import { environment } from './../../../environments/environment';
 
+export interface UserCredentials {
+  email: string;
+  password: string;
+}
+
 @Injectable()
 export class AuthService {
   constructor(public router: Router) {}
@@ -16,7 +21,7 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user') || '{}') as User;
   }
 
-  async login(provider, userCred?) {
+  async login(provider, userCred?: UserCredentials) {
     let user = {} as User;
     try {
       if (provider === 'email') {
